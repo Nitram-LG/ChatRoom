@@ -1,0 +1,32 @@
+{% extends "base_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/home/style.css">
+{% endblock %}
+
+
+{% block title %}
+NITRAM | CHAT-ROOM
+{% endblock %}
+
+{% block content %}
+<h1>WELCOME</h1>
+
+<div class="h-separator"></div>
+
+<p>
+    You've just arrived on the CHAT-ROOM website ! Feel free to take a look around this website via the navbar at the
+    top of the screen. You can switch between this page (home), chat (to access the chat), and code (to take a look at
+    how the chat was coded). You can also click on the user icon to register or log in to your account.
+    <br>
+    <br>
+    Having an account on our website allows you to chat under a custom username of your choice. That can be plenty of
+    fun, however try to avoid any potentially mean or inappropriate usernames.
+</p>
+
+<p id="end">Have Fun !</p>
+{% endblock %}
+
+{% block others %}
+<script src="/static/home/script.js"></script>
+{% endblock %}

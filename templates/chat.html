@@ -1,0 +1,31 @@
+{% extends "base_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/chat/style.css">
+{% endblock %}
+
+
+{% block title %}
+NITRAM | CHAT-ROOM
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+
+    <div id="chat-container"></div>
+
+    <form id="chat-input" onsubmit="event.preventDefault(); sendToServer()">
+        <textarea id="chatbox" name="content" placeholder="Écrivez votre message ici..." maxlength="128"
+            oninput="adjustText(this)"></textarea>
+        <button type="submit">Envoyez</button>
+    </form>
+
+</div>
+
+{% endblock %}
+
+{% block others %}
+<script src="/static/chat/script.js"></script>
+{% endblock %}
+
+<!--  -->

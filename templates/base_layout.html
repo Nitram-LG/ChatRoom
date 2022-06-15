@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/src/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/src/style.css">
+    <script src="/static/src/fontawesome.js"></script>
+
+    {% block head%} {% endblock %}
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+
+    <div id="overlay">
+        <div class="lds-dual-ring"></div>
+    </div>
+
+    <nav>
+        <img src="/static/src/logo.png" alt="logo">
+
+        <div class="separator" style="margin-right: 10px;"></div>
+
+        <div class="menu-item home" onmouseover="enlargeItem(this)" onmouseleave="reduceItem(this)"
+            onclick="changeTo('home')">
+            <i class="fas fa-home-lg icon"></i>
+            <p>- HOME</p>
+        </div>
+        <div class="menu-item chat" onmouseover="enlargeItem(this)" onmouseleave="reduceItem(this)"
+            onclick="changeTo('chat')">
+            <i class="fas fa-comments-alt icon"></i>
+            <p>- CHAT</p>
+        </div>
+        <div class="menu-item code" onmouseover="enlargeItem(this)" onmouseleave="reduceItem(this)"
+            onclick="changeTo('code')">
+            <i class="fas fa-file-code icon"></i>
+            <p>- CODE</p>
+        </div>
+
+        <div class="separator wide"></div>
+
+        <div class="dropdown">
+            <i class="fas fa-user icon drop in" style="margin-right: 20px; cursor: pointer;"
+                onclick="openUserMenu()"></i>
+            <div class="drop-content">
+
+                {% if not session %}
+
+                <div class="user-select">
+                    <p onclick="toggleUserSelect(this)" id="register">REGISTER</p>
+                    <div class="separator" style="width: 3px; margin: 0 10px;"></div>
+                    <p onclick="toggleUserSelect(this)">LOGIN</p>
+                </div>
+                <div class="user-input">
+                    <form id="user-form" onsubmit="event.preventDefault(); permformUserAction()">
+                        <p>Username :</p>
+                        <input type="text" name="username" id="username-input" required>
+                        <p>Password :</p>
+                        <input type="password" name="password" id="password-input" required>
+                        <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
+                        <p id="status-message" style="margin-top: 8px; color: #808080; height: 15px; font-size: 10px;">
+                        </p>
+                        <button type="submit" id="user-submit">REGISTER <i class="fas fa-user-plus"></i> </button>
+                    </form>
+                </div>
+
+                {% else %}
+
+                <div class="connected">
+                    <p id="uinfo-title">USER INFOS :</p>
+                    <p id="uinfo-name">You are currently connected as : <strong>{{session['username']}}</strong></p>
+
+                    <img id="djungelskog" src="/static/src/djungelskog.png" style="max-height: 100px;">
+
+                    <button id="logout" onclick="location.href = '/logout'">LOGOUT <i
+                            class="fas fa-sign-out-alt"></i></button>
+                </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="h-separator"></div>
+
+    <div id="container">
+
+        <div id="box">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+    </div>
+
+    {% block others %}
+
+    {% endblock %}
+
+    <script src="/static/src/script.js"></script>
+
+</body>
+
+</html>
